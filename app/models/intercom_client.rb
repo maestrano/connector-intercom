@@ -1,4 +1,4 @@
-class Client
+class IntercomClient
 
   # Intercom API Client
   def initialize(organization)
