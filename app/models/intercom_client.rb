@@ -7,18 +7,18 @@ class IntercomClient
 
   def find_all(entity, created_since = nil)
     method = "get_#{entity.pluralize}"
-    created_since = (Date.today - Date.parse(created_since)).to_i
-    send(method, created_since)
+
+    resource =  if created_since
+                  @intercom_client.send("#{entity.pluralize}").find_all(created_since: (Date.today - Date.parse(created_since)).to_i)
+                else
+                  @intercom_client.send("#{entity.pluralize}").all
+                end
+
+    send(method, resource)
   end
 
-  def get_users(created_since = nil)
-    users = if created_since
-              @intercom_client.users.find_all(created_since: created_since)
-            else
-              @intercom_client.users.all
-            end
-
-    entities = users.collect do |user|
+  def get_users(resource)
+    entities = resource.collect do |user|
       {
         id: user.id,
         user_id: user.user_id,
@@ -37,14 +37,8 @@ class IntercomClient
     entities
   end
 
-  def get_companies(created_since = nil)
-    companies = if created_since
-                  @intercom_client.companies.find_all(created_since: created_since)
-                else
-                  @intercom_client.companies.all
-                end
-
-    entities = companies.collect do |company|
+  def get_companies(resource)
+    entities = resource.collect do |company|
       {
         id: company.id,
         name: company.name,
@@ -56,14 +50,8 @@ class IntercomClient
     entities
   end
 
-  def get_contacts(created_since = nil)
-    contacts = if created_since
-                  @intercom_client.contacts.find_all(created_since: created_since)
-                else
-                  @intercom_client.contacts.all
-                end
-
-    entities = contacts.collect do |contact|
+  def get_contacts(resource)
+    entities = resource.collect do |contact|
       {
         id: contact.id,
         user_id: contact.user_id,
