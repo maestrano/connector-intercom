@@ -86,16 +86,11 @@ class IntercomClient
   end
 
   def update(entity, entity_id, params)
-    method = "update_#{entity.pluralize}"
-    send(method, entity_id, params)
-  end
-
-  def update_users(entity_id, params)
-    @intercom_client.users.create(params)
-  end
-
-  def update_companies(entity_id, params)
-    @intercom_client.companies.create(params)
+    if entity.in? ['user', 'company']
+      @intercom_client.send("#{entity.pluralize}").create(params)
+    else
+      update_contacts(entity_id, params)
+    end
   end
 
   def update_contacts(entity_id, params)
