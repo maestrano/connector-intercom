@@ -82,20 +82,7 @@ class Client
   end
 
   def create(entity, params)
-    method = "create_#{entity.pluralize}"
-    send(method, params)
-  end
-
-  def create_users(params)
-    @intercom_client.users.create(params)
-  end
-
-  def create_companies(params)
-    @intercom_client.companies.create(params)
-  end
-
-  def create_contacts(params)
-    @intercom_client.contacts.create(params)
+    @intercom_client.send("#{entity.pluralize}").create(params)
   end
 
   def update(entity, entity_id, params)
