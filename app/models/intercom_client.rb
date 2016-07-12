@@ -72,8 +72,4 @@ class IntercomClient
   def create(entity, params)
     @intercom_client.send("#{entity.pluralize}").create(params)
   end
-
-  def update(entity, entity_id, params)
-    @intercom_client.send("#{entity.pluralize}").create(params)
-  end
 end
