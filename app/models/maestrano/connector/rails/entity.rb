@@ -40,11 +40,11 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
   end
 
   def self.last_update_date_from_external_entity_hash(entity)
-    entity['updated_at'] || Time.now
+    entity['updated_at']
   end
 
   def self.creation_date_from_external_entity_hash(entity)
-    entity['created_at'] || Time.now
+    entity['created_at']
   end
 
   def self.inactive_from_external_entity_hash?(entity)
