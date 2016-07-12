@@ -74,21 +74,6 @@ class IntercomClient
   end
 
   def update(entity, entity_id, params)
-    if entity.in? ['user', 'company']
-      @intercom_client.send("#{entity.pluralize}").create(params)
-    else
-      update_contacts(entity_id, params)
-    end
-  end
-
-  def update_contacts(entity_id, params)
-    contact.user_id = params[:user_id]
-    contact.email = params[:email]
-    contact.location_data.city_name = params[:city_name]
-    contact.location_data.country_name = params[:country_name]
-    contact.location_data.postal_code = params[:postal_code]
-    contact.location_data.region_name = params[:region_name]
-
-    @intercom_client.contacts.save(contact)
+    @intercom_client.send("#{entity.pluralize}").create(params)
   end
 end
