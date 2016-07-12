@@ -82,12 +82,6 @@ class IntercomClient
   end
 
   def update_contacts(entity_id, params)
-    begin
-      contact = @intercom_client.contacts.find(id: entity_id)
-    rescue
-      contact = @intercom_client.contacts.find(user_id: params[:user_id])
-    end
-
     contact.user_id = params[:user_id]
     contact.email = params[:email]
     contact.location_data.city_name = params[:city_name]
