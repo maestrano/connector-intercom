@@ -24,7 +24,6 @@ describe Entities::Company do
           'id' => '531ee472cce572a6ec000006',
           'name' => 'Blue',
           'user_count' => 10,
-          'monthly_spend' => 49,
           'created_at' => 1394533506,
           'updated_at' => 1396874658,
         }
@@ -34,7 +33,6 @@ describe Entities::Company do
         {
           'name' => 'Blue',
           'number_of_employees' => 10,
-          'capital' => 49,
           'id' => [{'id' => '531ee472cce572a6ec000006', 'provider' => 'this_app', 'realm' => 'sfuiy765'}],
         }.with_indifferent_access
       }
@@ -47,7 +45,6 @@ describe Entities::Company do
         {
           'name' => 'Blue',
           'number_of_employees' => 10,
-          'capital' => 49,
         }
       }
 
@@ -55,7 +52,6 @@ describe Entities::Company do
         {
           'name' => 'Blue',
           'user_count' => 10,
-          'monthly_spend' => 49,
         }.with_indifferent_access
       }
 

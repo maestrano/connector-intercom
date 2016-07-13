@@ -26,5 +26,4 @@ class CompanyMapper
   map from('id'), to('id')
   map from('name'), to('name')
   map from('number_of_employees'), to('user_count')
-  map from('capital'), to('monthly_spend')
 end
