@@ -24,6 +24,7 @@ class CompanyMapper
   extend HashMapper
 
   map from('id'), to('id')
+  map from('code'), to('company_id')
   map from('name'), to('name')
   map from('number_of_employees'), to('user_count')
 end

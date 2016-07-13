@@ -22,6 +22,7 @@ describe Entities::Company do
       let(:external_hash) {
         {
           'id' => '531ee472cce572a6ec000006',
+          'company_id' => 'AS2',
           'name' => 'Blue',
           'user_count' => 10,
           'created_at' => 1394533506,
@@ -33,6 +34,7 @@ describe Entities::Company do
         {
           'name' => 'Blue',
           'number_of_employees' => 10,
+          'code' => 'AS2',
           'id' => [{'id' => '531ee472cce572a6ec000006', 'provider' => 'this_app', 'realm' => 'sfuiy765'}],
         }.with_indifferent_access
       }
@@ -44,6 +46,7 @@ describe Entities::Company do
       let(:connec_hash) {
         {
           'name' => 'Blue',
+          'code' => 'AS2',
           'number_of_employees' => 10,
         }
       }
@@ -51,6 +54,7 @@ describe Entities::Company do
       let(:mapped_connec_hash) {
         {
           'name' => 'Blue',
+          'company_id' => 'AS2',
           'user_count' => 10,
         }.with_indifferent_access
       }
