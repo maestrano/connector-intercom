@@ -19,6 +19,15 @@ class Entities::Contact < Maestrano::Connector::Rails::Entity
     entity['name']
   end
 
+  def get_connec_entities(last_synchronization_date)
+    @opts.merge!(:$filter => "is_lead eq true")
+    super
+  end
+
+  def filter_connec_entities(entities)
+    entities.select{|e| e['is_lead']}
+  end
+
   def self.references
     %w(organization_id)
   end
