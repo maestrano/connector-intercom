@@ -8,6 +8,9 @@ gem 'puma'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :jruby]
 gem 'uglifier', '>= 1.3.0'
 gem 'maestrano-connector-rails'
+gem 'omniauth-intercom'
+gem 'intercom', '~> 3.5.1'
+
 group :production, :uat do
   gem 'activerecord-jdbcpostgresql-adapter', platforms: :jruby
   gem 'pg', platforms: :ruby

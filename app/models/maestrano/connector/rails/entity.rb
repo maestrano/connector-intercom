@@ -11,10 +11,10 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
   def get_external_entities(last_synchronization_date=nil)
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Fetching #{Maestrano::Connector::Rails::External.external_name} #{self.class.external_entity_name.pluralize}")
 
-    if @opts[:full_sync] || last_synchronization.blank?
+    if @opts[:full_sync] || last_synchronization_date.blank?
       entities = @external_client.find_all(self.class.external_entity_name)
     else
-      entities = @external_client.find_all(self.class.external_entity_name, last_synchronization.updated_at)
+      entities = @external_client.find_all(self.class.external_entity_name, last_synchronization_date)
     end
 
     Maestrano::Connector::Rails::ConnectorLogger.log('info', @organization, "Received data: Source=#{Maestrano::Connector::Rails::External.external_name}, Entity=#{self.class.external_entity_name}, Response=#{entities}")
@@ -40,11 +40,11 @@ class Maestrano::Connector::Rails::Entity < Maestrano::Connector::Rails::EntityB
   end
 
   def self.last_update_date_from_external_entity_hash(entity)
-    entity['updated_at']
+    Time.at(entity['updated_at'])
   end
 
   def self.creation_date_from_external_entity_hash(entity)
-    entity['created_at']
+    Time.at(entity['created_at'])
   end
 
   def self.inactive_from_external_entity_hash?(entity)
