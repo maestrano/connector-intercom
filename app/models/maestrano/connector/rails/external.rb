@@ -10,6 +10,6 @@ class Maestrano::Connector::Rails::External
   end
 
   def self.entities_list
-    %w(company user)
+    %w(company user contact)
   end
 end
