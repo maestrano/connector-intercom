@@ -1,14 +1,14 @@
-class Entities::User < Maestrano::Connector::Rails::Entity
+class Entities::Contact < Maestrano::Connector::Rails::Entity
   def self.connec_entity_name
     'People'
   end
 
   def self.external_entity_name
-    'User'
+    'Contact'
   end
 
   def self.mapper_class
-    UserMapper
+    ContactMapper
   end
 
   def self.object_name_from_connec_entity_hash(entity)
@@ -20,12 +20,12 @@ class Entities::User < Maestrano::Connector::Rails::Entity
   end
 
   def get_connec_entities(last_synchronization_date)
-    @opts.merge!(:$filter => "is_customer eq true")
+    @opts.merge!(:$filter => "is_lead eq true")
     super
   end
 
   def filter_connec_entities(entities)
-    entities.select{|e| e['is_customer']}
+    entities.select{|e| e['is_lead']}
   end
 
   def self.references
@@ -33,7 +33,7 @@ class Entities::User < Maestrano::Connector::Rails::Entity
   end
 end
 
-class UserMapper
+class ContactMapper
   extend HashMapper
 
   # Mapping to Intercom
@@ -49,8 +49,8 @@ class UserMapper
       output[:last_name] = input['name'].split(' ', 2).last
     end
 
-    output[:is_customer] = true
-    output[:is_lead] = false
+    output[:is_customer] = false
+    output[:is_lead] = true
 
     output
   end
