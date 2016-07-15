@@ -2,7 +2,7 @@ class IntercomClient
 
   # Intercom API Client
   def initialize(organization)
-    @intercom_client = Intercom::Client.new(app_id: ENV['intercom_api_id'], api_key: ENV['intercom_api_key'])
+    @intercom_client = Intercom::Client.new(token: organization.oauth_token)
   end
 
   def find_all(entity, created_since = nil)
