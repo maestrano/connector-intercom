@@ -29,3 +29,5 @@ group :test do
   gem 'shoulda-matchers'
   gem 'timecop'
 end
+gem 'newrelic_rpm'
+gem 'redis-rails', '~> 5'
